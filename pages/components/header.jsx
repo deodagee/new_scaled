@@ -3,94 +3,143 @@ import xsmStyles from "../../styles/components/header_xsm_mobile.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react"
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 
 function Header() {
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+const handleImageLoad = () => {
+    setImageLoaded(true);
+};
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const { data: session } = useSession()
 
   return (
     <>
-
-      <div className={styles.parent}>
-        <div className={styles.parent_wrapper}>
-
-          <ul className={`${styles.logo__signature_and_button_parent} ${xsmStyles.logo__signature_and_button_parent_xsm}`}>
-
-            <li className={styles.logo_item}>
-              <Image
-                className={`${styles.header_logo} ${xsmStyles.header_logo_xsm}`} alt="logo"
-                width={50}
-                height={50}
-                src={"/logored.png"}
-              >
-              </Image>
-            </li>
-
-            <li className={styles.signature_item}>
-              <Image
-                className={`${styles.header_signature} ${xsmStyles.header_signature_xsm}`} aria-label="signature"
-                alt="signature"
-                width={90}
-                height={90}
-                src={"/signaturewhite.png"}
-              >
-              </Image>
-            </li>
+          <Head>
+          <link rel="icon" href="/logoblack.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href={"/styles/components/header.module.css"} />
+        <link rel="stylesheet" href={"/styles/components/header_xsm_mobile.module.css"} />
+      </Head>
+    
+      <div className={`${styles.parent} ${xsmStyles.parent_xsm}`}>
+      <div className={`${styles.parent_wrapper} ${xsmStyles.parent_wrapper_xsm} ${isVisible ? '' : styles.parent_wrapper_margin}`}>
+                          <ol className={`${styles.logo__signature_and_button_parent} ${xsmStyles.logo__signature_and_button_parent_xsm}`}>
 
 
-            <ul className={`${styles.buttons} ${xsmStyles.buttons_xsm}`}>
-              <li className={styles.register}>
+            <ul className={`${styles.logo_and_signature} ${xsmStyles.logo_and_signature_xsm}`}>
+              <li className={`${styles.logo_item} ${xsmStyles.logo_item_xsm}`}>
+                <Image
+                  className={`${styles.header_logo} ${xsmStyles.header_logo_xsm}`} 
+                  alt=""
+                  width={50}
+                  height={50}
+                  src={"/logored.png"}
+                  onLoad={handleImageLoad}
+                >
+                </Image>
+              </li>
+
+              <li className={styles.signature_item}>
+                <Image
+                  className={`${styles.header_signature} ${xsmStyles.header_signature_xsm}`} aria-label="signature"
+                  alt=""
+                  width={90}
+                  height={90}
+                  src={"/signaturewhite.png"}
+                  onLoad={handleImageLoad}
+                >
+                </Image>
+              </li>
+            </ul>
+
+
+
+            <ol className={`${styles.buttons} ${xsmStyles.buttons_xsm}`}>
+              <ul className={styles.login_logout_list}>
                 {session ? (
                   <>
-
-                    <button className={`${styles.register_button} ${xsmStyles.register_button_xsm}`} onClick={() => signOut('github')()}>
-                      <p>Logout</p>
-                    </button>
+                    <li className={styles.register_button_item}>
+                      <button className={`${styles.logout_button_item} ${xsmStyles.register_button_xsm}`} onClick={() => signOut('github')()}>
+                        <p>Logout</p>
+                      </button>
+                    </li>
                   </>
                 ) : (
                   <>
-                    <button className={`${styles.login_button} ${xsmStyles.login_button_xsm}`} onClick={() => signIn('google')}>
-                      <p>GitHub signIn</p>
-                    </button>
-                    <button className={`${styles.login_button} ${xsmStyles.login_button_xsm}`} onClick={() => signIn('github')}>
-                      <p>Google signIn</p>
-                    </button>
+                    <li className={styles.logout_button_item}>
+                      <button className={`${styles.login_button} ${xsmStyles.login_button_xsm}`} onClick={() => signIn('google')}>
+                        <p>Google signIn</p>
+                      </button>
+                    </li>
+                    <li className={styles.logout_button_item}>
+                      <button className={`${styles.login_button} ${xsmStyles.login_button_xsm}`} onClick={() => signIn('github')}>
+                        <p>GitHub signIn</p>
+                      </button>
+                    </li>
                   </>
                 )}
-              </li>
-            </ul>
-          </ul>
-
-
-
+              </ul>
+            </ol>
+          </ol>
           <ol className={styles.menu_bars_wrapper}>
 
-            <ul className={`${styles.first_menubar} ${xsmStyles.first_menubar_xsm}`}>
-              <li className={styles.first_menubar_item}>
-                <p className={styles.promo1}>
-                  Private Domains
-                </p>
+
+          <ul className={`${styles.first_menubar} ${xsmStyles.first_menubar_xsm}`} style={{ display: isVisible ? 'inline-flex' : 'none' }}>              
+          <li className={styles.first_menubar_item}>
+                <Link href={'/sources'}>
+                  <p className={styles.promo1}>
+                    Private Domains
+                  </p>
+                </Link>
               </li>
               <li className={styles.first_menubar_item}>
-                <p className={styles.promo2}>
-                  Dall-E Engines
-                </p>
+                <Link href={'/components/info/aplicationinterfaces'}>
+                  <p className={styles.promo2}>
+                    Application Interfaces
+                  </p>
+                </Link>
               </li>
               <li className={styles.first_menubar_item}>
+              <Link href={'/components/info/3drenders'}>
                 <p className={styles.promo3}>
                   3D Renders
                 </p>
+                </Link>
               </li>
               <li className={styles.first_menubar_item}>
+              <Link href={'/components/info/vercel'}>
                 <p className={styles.promo4}>
-                  Wix?
+                  Vercel?
                 </p>
+                </Link>
               </li>
               <li className={styles.first_menubar_item}>
+              <Link href={'/components/info/hostgator'}>
                 <p className={styles.promo4}>
-                  Hostgator?
+                  Hostgator/Bluehost?
                 </p>
+                </Link>
               </li>
 
             </ul>

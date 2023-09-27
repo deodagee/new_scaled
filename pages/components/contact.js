@@ -3,6 +3,8 @@ import { Container, Heading, FormControl, FormLabel, Input, Textarea, Select, Bu
 import Layout from './layouts/main';
 import Section from './section';
 import styles from "../../styles/components/contact.module.css"
+import Head from 'next/head';
+import Link from 'next/link';
 
 const Posts = () => {
   const [name, setName] = useState('');
@@ -19,7 +21,7 @@ const Posts = () => {
       message
     };
 
-    fetch('/api/send-email.php', {
+    fetch('/api/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,66 +39,68 @@ const Posts = () => {
   return (
 
     <>
-    <div className={styles.contact_whole}>
-<Layout >
-<Container >
-        <Heading as="h3" fontSize={20}  mb={4}>
-          Contact Me
-        </Heading>
-    <Section delay={0.1}>
-      <form onSubmit={handleSubmit}>
-        <FormControl id="name" isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            style={{ border: '1px solid black' }}
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name or Company"
-          />
-        </FormControl>
-        <FormControl id="reason" isRequired>
-          <FormLabel>Inquiry</FormLabel>
-          <Input
-            style={{ border: '1px solid black' }}
-            type="text"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            placeholder="Any questions or requests?"
-          />
-        </FormControl>
-        <FormControl id="category" isRequired>
-          <FormLabel>Request Category</FormLabel>
-          <Select
-            className="custom-select" // Add this class for styling
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="graphic design">Graphic Design</option>
-            <option value="ui/ux">UI/UX</option>
-            <option value="quote">Quote</option>
-            <option value="audio">Audio</option>
-          </Select>
-        </FormControl>
-        <FormControl id="message" isRequired>
-          <FormLabel>Message</FormLabel>
-          <Textarea
-            style={{ border: '1px solid black' }}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Add any relevant details here:"
-          />
-        </FormControl>
-        <Button 
-        mt ="10px"
-        type="submit">Send</Button>
-      </form>
-    </Section>
-  </Container>
-</Layout>
-</div>
-
-
+      <Head>
+        <Link rel="stylesheet" href={"/styles/components/contact.module.css"} />
+      </Head>
+      <div className={styles.contact_whole}>
+        <Layout  className={styles.contact_whole_wrapper}>
+          <Container >
+            <Heading as="h3" fontSize={20} mb={4}>
+              Contact Me
+            </Heading>
+            <Section delay={0.1}>
+              <form onSubmit={handleSubmit}>
+                <FormControl id="name" isRequired>
+                  <FormLabel>Name</FormLabel>
+                  <Input
+                    style={{ border: '1px solid black' }}
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name or Company"
+                  />
+                </FormControl>
+                <FormControl id="reason" isRequired>
+                  <FormLabel>Inquiry</FormLabel>
+                  <Input
+                    style={{ border: '1px solid black' }}
+                    type="text"
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                    placeholder="Any questions or requests?"
+                  />
+                </FormControl>
+                <FormControl id="category" isRequired>
+                  <FormLabel>Request Category</FormLabel>
+                  <Select
+                    className="custom-select"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value=""></option>
+                    <option value="graphic design">Graphic Design</option>
+                    <option value="ui/ux">UI/UX</option>
+                    <option value="quote">Quote</option>
+                    <option value="audio">Audio</option>
+                  </Select>
+                </FormControl>
+                <FormControl id="message" isRequired>
+                  <FormLabel>Message</FormLabel>
+                  <Textarea
+                    style={{ border: '1px solid black' }}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Add any relevant details here:"
+                  />
+                </FormControl>
+                <Button
+                  mt="10px"
+                  type="submit">Send</Button>
+              </form>
+            </Section>
+          </Container>
+        </Layout>
+      </div>
     </>
   );
 };
