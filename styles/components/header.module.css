@@ -15,43 +15,82 @@
 /*  font-family: 'Teko', sans-serif;
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap');
+
+
+
+
+
 .parent ul {
   list-style: none;
 }
 
 .parent {
-  width: max-content;
+  width: 100vw;
   z-index: 100;
-  background-color: #111b20;
   color: white;
   display: flex;
-  position: fixed;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
   overflow: hidden;
+  position: absolute;
+}
+
+@keyframes textColorCycle_name {
+
+  0%,
+  100% {
+    background-color: #101010;
+  }
+
+  33% {
+    background-color: #fafafafb;
+  }
+
+  66% {
+    background-color: #131313;
+  }
 }
 
 .parent_wrapper {
-  overflow: hidden;
+  position: fixed;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 0;
+  transition: 0.6s;
+  margin-top: -10px;
 }
 
+
+.parent_wrapper_margin {
+  transition: 0.6s;
+  margin-top: -50px;
+}
+
+
 .logo__signature_and_button_parent {
+  background: linear-gradient(to top, #0a0a0a, #0e0e0e, #232323f1);
+  margin-top: 0;
   display: flex;
-  width: 90vw;
+  width: 100vw;
   justify-content: space-between;
   flex-direction: row;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.logo_and_signature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: max-content;
 }
 
 .logo_item {
   margin: 5px;
-  margin-top: 15px;
+  margin-top: 0px;
+  margin-left: 20px;
 }
 
 .header_logo {
@@ -59,9 +98,12 @@
   height: 30px;
   border-radius: 50%;
   box-shadow: white 0px 0px 7px;
+  transition: 0.6s;
 }
 
 .header_logo:hover {
+  transition: 0.6s;
+  transform: scale(0.9);
   cursor: pointer;
   margin-top: 0;
   box-shadow: white 0px 0px 12px;
@@ -72,8 +114,8 @@
 }
 
 .header_signature {
-  margin-left: 25vw;
-  margin-top: 15px;
+  margin-left: 10vw;
+  margin-top: 6px;
   transition: 0.5s;
 }
 
@@ -83,64 +125,75 @@
   transform: scale(1.1);
 }
 
+.hide {
+  display: none;
+}
+
 .menu_bars_wrapper {
   gap: 1px;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 0px;
   align-items: center;
   justify-content: center;
 }
 
+.menuitem { 
+  cursor: pointer;
+}
+
+
 .first_menubar {
+  box-shadow: rgb(201, 201, 201) 0px 0px 5px;
   border-left: none;
   border-right: none;
   border-bottom: none;
   border-color: rgb(255, 255, 255);
   border-width: 0.5px;
-  gap: 8vw;
+  gap: 12vw;
   width: 100vw;
   display: flex;
-  font-size: 12px;
-  font-family: 'Teko', sans-serif;
-  font-weight: 600;
+  font-size: 9px;
+  font-family: 'Skranji', cursive;
+    font-weight: 600;
   flex-direction: row;
   white-space: nowrap;
   align-items: center;
   justify-content: center;
   transition: 0.1s;
-  background-color: rgb(246, 246, 246);
+  background-color: rgb(20, 0, 37);
   padding: 5px;
-  padding-top: 9px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin-bottom: -1px;
-  color: rgb(140, 140, 140);
+  color: rgb(220, 220, 220);
 }
 
 .first_menubar p:hover {
   cursor: pointer;
   transition: 0.1s;
-  color: rgb(229, 229, 229);
+  color: rgb(255, 128, 0);
 }
 
 .first_menubar:hover {
+  color: rgb(240, 240, 240);
   transition: 0.4s;
-  background-color: rgb(211, 211, 211);
+  background-color: rgb(17, 22, 24);
 }
 
 .second_menubar {
   gap: 12vw;
   width: 100vw;
   display: flex;
-  font-size: 14px;
-  font-family: 'Teko', sans-serif;
+  font-size: 10px;
+  font-family: 'Skranji', cursive;
   font-weight: 700;
   flex-direction: row;
   white-space: nowrap;
   align-items: center;
   justify-content: center;
   transition: 0.05s;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(24, 24, 24);
   padding: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -148,15 +201,15 @@
   border-left: none;
   border-right: none;
   border-color: rgb(212, 212, 212);
-  color: rgb(47, 57, 71);
+  color: rgb(246, 246, 246);
   border-width: 1px;
-  box-shadow: rgb(72, 72, 72) 0px 0px 6px;
+  box-shadow: rgb(184, 184, 184) 0px 0px 6px;
 }
 
 .second_menubar:hover {
   transition: 0.05s;
-  color: rgb(224, 119, 0);
-  background-color: rgb(236, 236, 236);
+  color: rgb(241, 241, 241);
+  background-color: rgb(31, 39, 44);
 }
 
 .second_menubar p {
@@ -165,6 +218,7 @@
 
 .second_menubar p:hover {
   cursor: pointer;
+  color: rgb(255, 128, 0);
   transition: 0.4s;
   text-decoration: underline;
 }
@@ -173,7 +227,7 @@
   display: flex;
   margin: 5px;
   margin-top: 17px;
-  margin-right: 0vw;
+  margin-right: 5vw;
   font-size: 15px;
   font-family: 'Teko', sans-serif;
   flex-direction: row;
@@ -182,41 +236,55 @@
   color: rgb(255, 255, 255);
 }
 
+.login_logout_list { 
+  display: flex;
+  flex-direction: row;
+}
+
 .register_button {
+  color: rgb(61, 61, 61);
+  white-space: nowrap;
+  margin-left: 10px;
+  margin-bottom: 5px;
   border-width: 0.5px;
   border-color: white;
   width: max-content;
   padding: 3px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: rgb(238, 238, 238);
-  border-radius: 0.70rem;
-  transition: 0.4s;
+  background-color: rgb(9, 7, 48);
+  border-radius: 0.99rem;
+  transition: 0.6s;
 }
 
+
 .register_button:hover {
-  color: rgb(55, 55, 55);
-  background-color: rgb(0, 186, 9);
-  transition: 0.4s;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  transition: 0.6s;
+  box-shadow: white 0px 0px 5px;
 }
 
 .login_button {
+  color: rgb(228, 228, 228);
   white-space: nowrap;
   margin-left: 10px;
+  margin-bottom: 5px;
   border-width: 0.5px;
-  border-color: white;
+  border-color: rgb(255, 174, 0);
   width: max-content;
   padding: 3px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: rgb(0, 186, 9);
-  border-radius: 0.70rem;
-  transition: 0.4s;
+  background-color: rgb(18, 39, 54);
+  border-radius: 0.25rem;
+  transition: 0.6s;
 }
 
+
 .login_button:hover {
-  color: rgb(55, 55, 55);
-  background-color: rgb(238, 238, 238);
-  transition: 0.4s;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  transition: 0.6s;
   box-shadow: white 0px 0px 5px;
 }

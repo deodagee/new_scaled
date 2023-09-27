@@ -15,18 +15,27 @@
 /*  font-family: 'Teko', sans-serif;
 */
 
+.footer ul { 
+  list-style: none;
+}
+
 .footer {
   background-color: #0c1215;
   color: #8b0000;
   padding: 10px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .wrapper {
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  justify-content: center;
+width: 100vw;
 }
 
 
@@ -36,25 +45,28 @@
   border-width: 2px;
   width: 80vw;
   margin-bottom: 0px;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .sections {
+  width: 70vw;
   display: flex;
   flex-direction: row;
   list-style: none;
   transition: 0.2s;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: max-content;
 }
 
 .section {
+  width: max-content;
   flex: 1;
   padding: 15px;
 }
 
 .list_sections {
+  width: max-content;
   font-size: 9px;
   list-style: none;
   display: flex;
@@ -67,7 +79,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: max-content;
 }
 
@@ -142,6 +154,7 @@
 }
 
 .list {
+  width: min-content;
   text-align: center;
   list-style: none;
   padding: 0;
@@ -149,6 +162,7 @@
 }
 
 .item {
+  white-space: nowrap;
   cursor: pointer;
   font-size: 10px;
   color: rgb(143, 143, 143);
@@ -193,31 +207,93 @@
 }
 
 .copyRight {
+  transition: 0.5s;
   text-align: right;
-  font-size: 8px;
-  font-weight: 500;
-  color: rgb(255, 0, 0);
+  font-size: 6px;
+  font-weight: 400;
+  color: rgb(255, 102, 0);
+}
+
+.copyRight:hover {
+    transition: 0.5s;
+transform: scale(1.2);
 }
 
 
-@media (min-width: 200px) and (max-width: 300px) and (orientation: portrait) {
-
+@media (min-width: 200px) and (max-width: 300px) {
 
   .footer {
     background-color: #0c1215;
     color: white;
-    padding: 10px;
-    width: max-content ;
+    width: 100vw ;
+    display: flex;
   }
   
   .wrapper {
-    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100vw;
   }
+  
+  .sections {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    transition: 0.2s;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+  }
 
+  .list_sections {
+    font-size: 6px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+  }
+
+  .list { 
+   width: 50px;
+  } 
+
+  .sectionTitle {
+    font-size: 10px;
+  }
+
+  .avatarContact {
+    transform: scale(0.6);
+    gap: 10px;
+  }
+
+  .iconsAndCopy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    flex-direction: column;
+  }
+
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+
+  .footer {
+    background-color: #0c1215;
+    color: white;
+    width: 100vw ;
+    display: flex;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
   
   .sections {
     display: flex;
@@ -256,63 +332,10 @@
 
 }
 
-@media (min-width: 300px) and (max-width: 400px) and (orientation: portrait) {
-  .footer {
-    background-color: #0c1215;
-    color: white;
-    padding: 10px;
-    width: max-content ;
-  }
-  
-  .wrapper {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  }
-  
-  .sections {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    transition: 0.2s;
-    align-items: center;
-    justify-content: center;
-    height: max-content;
-  }
 
 
-  .list_sections {
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-  }
+@media (min-width: 400px) and (max-width: 800px) {
 
-  .sectionTitle {
-    font-size: 10px;
-  }
-
-  .avatarContact {
-    transform: scale(0.6);
-  }
-
-  .iconsAndCopy {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    flex-direction: column;
-  }
-}
-
-
-
-@media (min-width: 400px) and (max-width: 800px) and (orientation: portrait) {
 
 
   .sections {
@@ -327,8 +350,6 @@
 
 
   .list_sections {
-    align-items: center;
-    justify-content: center;
     font-size: 9px;
     list-style: none;
     display: flex;
@@ -353,3 +374,4 @@
   }
 
 }
+
